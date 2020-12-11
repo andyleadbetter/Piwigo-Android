@@ -23,7 +23,6 @@ import android.content.Context;
 
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
-import com.jakewharton.picasso.OkHttp3Downloader;
 
 import org.piwigo.BuildConfig;
 import org.piwigo.PiwigoApplication;
@@ -51,7 +50,7 @@ public class ApplicationModule {
     @Provides @Singleton Picasso providePicasso() {
         Picasso p = new Picasso.Builder(application)
                 .indicatorsEnabled(BuildConfig.DEBUG) // We may not want this for production build..
-                .downloader(new OkHttp3Downloader(application)).build();
+                .build();
         //#257 here an okhttp instance without cookie is created
 // for extended logging activate this one here, it is normally not active, as it consumes so much CPU
 //        p.setLoggingEnabled(true);

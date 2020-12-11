@@ -42,8 +42,6 @@ public class PhotoViewerPagerAdapter extends PagerAdapter {
         if(image != null) { // sometimes it happens that the image we'd like to show is not yet loaded...
             // TODO: trigger URL updates to get needed resolution and handle LiveData updates
             // TODO: #232 load image from cache (if available)
-
-
             picasso.load(image.image.elementUrl)
 // TODO:                    .networkPolicy(NetworkPolicy.OFFLINE)
                     .into(imageViewPreview);
