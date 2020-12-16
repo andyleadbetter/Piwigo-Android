@@ -8,9 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
-import com.squareup.picasso.MemoryPolicy;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 import org.piwigo.R;
 import org.piwigo.data.model.Image;
@@ -23,7 +21,6 @@ public class PhotoViewerPagerAdapter extends PagerAdapter {
     private Context context;
     private List<VariantWithImage> images;
     private LayoutInflater inflater;
-    private Picasso picasso;
 
     public PhotoViewerPagerAdapter(Context context, List<VariantWithImage> images)
     {
@@ -42,7 +39,7 @@ public class PhotoViewerPagerAdapter extends PagerAdapter {
         if(image != null) { // sometimes it happens that the image we'd like to show is not yet loaded...
             // TODO: trigger URL updates to get needed resolution and handle LiveData updates
             // TODO: #232 load image from cache (if available)
-            picasso.load(image.image.elementUrl)
+            Glide.with(context).load(image.image.elementUrl)
 // TODO:                    .networkPolicy(NetworkPolicy.OFFLINE)
                     .into(imageViewPreview);
         }
@@ -65,8 +62,5 @@ public class PhotoViewerPagerAdapter extends PagerAdapter {
         container.removeView((View) object);
     }
 
-    void setPicassoInstance(Picasso picasso)
-    {
-        this.picasso = picasso;
-    }
+
 }

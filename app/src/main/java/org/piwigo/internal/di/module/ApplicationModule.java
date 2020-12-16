@@ -21,8 +21,7 @@ package org.piwigo.internal.di.module;
 import android.accounts.AccountManager;
 import android.content.Context;
 
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
+
 
 import org.piwigo.BuildConfig;
 import org.piwigo.PiwigoApplication;
@@ -45,16 +44,6 @@ public class ApplicationModule {
 
     @Provides @Singleton Context provideApplicationContext() {
         return application;
-    }
-
-    @Provides @Singleton Picasso providePicasso() {
-        Picasso p = new Picasso.Builder(application)
-                .indicatorsEnabled(BuildConfig.DEBUG) // We may not want this for production build..
-                .build();
-        //#257 here an okhttp instance without cookie is created
-// for extended logging activate this one here, it is normally not active, as it consumes so much CPU
-//        p.setLoggingEnabled(true);
-        return p;
     }
 
     @Provides @Singleton AccountManager provideAccountManager() {

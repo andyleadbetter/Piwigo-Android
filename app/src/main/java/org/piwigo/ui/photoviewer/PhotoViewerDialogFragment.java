@@ -10,7 +10,6 @@ import androidx.databinding.ObservableBoolean;
 import androidx.fragment.app.DialogFragment;
 import androidx.viewpager.widget.ViewPager;
 
-import com.squareup.picasso.Picasso;
 
 import org.piwigo.R;
 import org.piwigo.data.model.Image;
@@ -35,8 +34,6 @@ public class PhotoViewerDialogFragment extends DialogFragment
     private PhotoViewerPagerAdapter pagerAdapter;
     private int selectedPosition = 0;
 
-    @Inject
-    Picasso picasso;
 
     @Inject ImageRepository imageRepository;
 
@@ -57,7 +54,6 @@ public class PhotoViewerDialogFragment extends DialogFragment
         selectedPosition = getArguments().getInt("position");
         pagerAdapter = new PhotoViewerPagerAdapter(getContext(), images);
 
-        pagerAdapter.setPicassoInstance(picasso);
         viewPager.setAdapter(pagerAdapter);
         viewPager.setOffscreenPageLimit(3);
         setCurrentItem(selectedPosition);
